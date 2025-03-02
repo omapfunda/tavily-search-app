@@ -43,17 +43,18 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
             </select>
           </div>
           <div className="flex flex-col gap-1">
-            <label htmlFor="maxResults" className="text-sm text-gray-600 font-medium">Number of Results: {maxResults}</label>
-            <input
-              type="range"
+            <label htmlFor="maxResults" className="text-sm text-gray-600 font-medium">Number of Results</label>
+            <select
               id="maxResults"
-              min="5"
-              max="10"
               value={maxResults}
               onChange={(e) => setMaxResults(Number(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-              title="Slide to adjust number of search results"
-            />
+              className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              title="Select how many search results you want to receive"
+            >
+              {[5, 6, 7, 8, 9, 10].map(num => (
+                <option key={num} value={num}>{num} Results</option>
+              ))}
+            </select>
           </div>
           <div className="flex items-end">
             <button
