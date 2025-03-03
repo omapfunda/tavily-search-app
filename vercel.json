@@ -6,7 +6,8 @@
     "outputDirectory": ".next",
     "regions": ["iad1"],
     "env": {
-      "NODE_ENV": "production"
+      "NODE_ENV": "production",
+      "NEXTAUTH_URL": "${VERCEL_URL}"
     },
     "builds": [
       {
@@ -15,9 +16,11 @@
       }
     ],
     "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/"
-      }
+      { "src": "/api/(.*)", "dest": "/api/$1" },
+      { "src": "/auth/(.*)", "dest": "/auth/$1" },
+      { "src": "/dashboard", "dest": "/dashboard" },
+      { "src": "/search", "dest": "/search" },
+      { "src": "/landing", "dest": "/landing" },
+      { "src": "/(.*)", "dest": "/" }
     ]
   }
